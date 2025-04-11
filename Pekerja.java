@@ -4,7 +4,6 @@ public class Pekerja extends Manusia {
     private int jumlahAnak;
 
     public Pekerja(double gaji, int tahunMasuk, int jumlahAnak,
-                   int hari, int bulan, int tahun,
                    String nama, String nik, boolean jenisKelamin, boolean menikah) {
         super(nama, nik, jenisKelamin, menikah);
         this.gaji = gaji;
@@ -15,7 +14,7 @@ public class Pekerja extends Manusia {
     public double getBonus() {
         int tahunSekarang = 2025;
         int lamaKerja = tahunSekarang - tahunMasuk;
-        double bonus = 0;
+        double bonus;
 
         if (lamaKerja <= 5) {
             bonus = 0.05 * gaji;
@@ -24,6 +23,7 @@ public class Pekerja extends Manusia {
         } else {
             bonus = 0.15 * gaji;
         }
+
         return bonus;
     }
 
@@ -33,14 +33,14 @@ public class Pekerja extends Manusia {
 
     @Override
     public double getPendapatan() {
-        return getTunjangan() + getBonus() + gaji + (jumlahAnak * 20);
+        return gaji + getBonus() + getTunjangan() + (jumlahAnak * 20);
     }
 
     @Override
     public String toString() {
-        return super.toString()
-            + "\ntahun masuk : " + tahunMasuk
-            + "\njumlah anak : " + jumlahAnak
-            + "\ngaji : " + gaji;
+        return super.toString() +
+                "\ntahun masuk : " + tahunMasuk +
+                "\njumlah anak : " + jumlahAnak +
+                "\ngaji : " + gaji;
     }
 }
